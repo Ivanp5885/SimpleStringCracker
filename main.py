@@ -1,23 +1,24 @@
 import string
+import time
 
-char = list(string.ascii_letters + string.digits)
+char = list(string.ascii_letters + string.digits + " ")
 print(char)
-print(char[2])
 
-y=0
-pw = ""
+pw = input("Enter password:\n")
+length = len(pw)
+print("Password length:", length)
+
 pwguess = ""
-print("Hello World")
-pw = input("pass?\n")
-lenght = len(pw)
-print(lenght)
-xpos = 0
 
-while pw !=pwguess:
-    pwguess=pwguess+str(char[xpos])
-    if pwguess[xpos] != pw[xpos]:
-        pwguess = pwguess[:-1] + str(char[y])
-        y=y+1
-        print(pwguess)
-    else:
-        xpos= xpos + 1
+for xpos in range(length):
+    for y in range(len(char)):
+        pwguess_try = pwguess + str(char[y])
+        print("Trying:", pwguess_try)
+        time.sleep(0.02)
+
+        if pwguess_try[xpos] == pw[xpos]:
+            pwguess = pwguess_try
+            print("Correct!")
+            break
+
+print("Password guessed:", pwguess)
